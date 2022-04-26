@@ -18,7 +18,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findProductByCategoryAndActiveIsTrue(Category category);
 
 //    @Query(value = "select * from products , (select product_id from size where size.active = true) as s\n" +
-//            "where products.active = true and s.product_id = products.id", nativeQuery = true)
-    List<Product> findProduct();
+//            "where products.active = true and s.product_id = products.id", nativeQuery = true
 
 }
