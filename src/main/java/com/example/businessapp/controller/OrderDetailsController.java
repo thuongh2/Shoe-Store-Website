@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api")
 public class OrderDetailsController {
 
@@ -58,7 +59,7 @@ public class OrderDetailsController {
         return orderDetailService.createOrderDetail(orderDetailRequest);
     }
 
-    @GetMapping("/orderdetail/delete/{id}")
+    @GetMapping("/orderdetail-d/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delele(@PathVariable(name = "id") Long id){
         orderDetailService.deleteOrderDetail(id);

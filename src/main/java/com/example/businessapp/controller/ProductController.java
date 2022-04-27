@@ -18,7 +18,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/products")
+    @GetMapping("/products-d")
     public List<ProductDto> getAllProduct(){
         return productService.getProducts();
     }
@@ -33,7 +33,7 @@ public class ProductController {
         return productService.getProduct(id);
     }
 
-    @GetMapping("/product")
+    @GetMapping("/product-i")
     public List<ProductDto> getProductByCategory(@RequestParam(value="category") Long id){
         return productService.getProductByCategory(id);
     }

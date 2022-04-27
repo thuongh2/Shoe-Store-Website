@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 @Slf4j
 public class UserController {
 
@@ -38,11 +38,11 @@ public class UserController {
         return userService.getUsers();
     }
 
-    //admin and super admin
-    @GetMapping("/s/users/username")
-    public UserDto getUserByUsername(@PathVariable(name = "username") String username){
-        return userService.getUserByUsername(username);
-    }
+//    //admin and super admin
+//    @GetMapping("/s/users/{username}")
+//    public UserDto getUserByUsername(@PathVariable(name = "username") String username){
+//        return userService.getUserByUsername(username);
+//    }
 
     @GetMapping("/s/user/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
