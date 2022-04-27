@@ -24,7 +24,7 @@ public class BusinessAppApplication {
     @Bean
     CommandLineRunner run(UserService userService){
         return args -> {
-           userService.saveUser(new User(1L, "admin", "admin", passwordEncoder.encode("admin") , "admin@gmail.com", "SUPERADMIN", new ArrayList<>(), true));
+           userService.saveUser(new User(1L, "admin", passwordEncoder.encode("admin") ,  "admin","admin@gmail.com", "SUPERADMIN", new ArrayList<>(), true));
         };
     }
 }
