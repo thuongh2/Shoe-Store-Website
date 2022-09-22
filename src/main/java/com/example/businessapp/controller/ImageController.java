@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://shoes-store-udtt.vercel.app/")
 @RequestMapping("/api")
 public class ImageController {
 

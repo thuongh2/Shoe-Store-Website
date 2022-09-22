@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://shoes-store-udtt.vercel.app/")
 @RequestMapping("/api")
 @Slf4j
 public class AuthController {
