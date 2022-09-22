@@ -18,7 +18,7 @@ public class Size implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "size", nullable = false, unique = true, columnDefinition = "integer default 0")
+    @Column(name = "size", nullable = false, columnDefinition = "integer default 0")
     private int size;
 
     @Column(name = "quantity", nullable = false, columnDefinition = "integer default 0")
