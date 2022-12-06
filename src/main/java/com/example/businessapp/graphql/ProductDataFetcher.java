@@ -10,6 +10,7 @@ import com.netflix.graphql.dgs.InputArgument;
 import lombok.experimental.ExtensionMethod;
 
 import java.util.List;
+import java.util.Optional;
 
 @DgsComponent
 @ExtensionMethod(Extensions.class)
@@ -24,6 +25,25 @@ public class ProductDataFetcher extends BaseService {
     public String createProduct(@InputArgument(name = "product") Product product){
         productRepository.save(product);
         return product.getId();
+    }
+
+    @DgsMutation
+    public String updateProduct(@InputArgument(name = "product") Product product) throws Exception {
+        if(product.getId().isBlankOrNull()){
+            throw new Exception("Không tìm thấy sản phẩm");
+        }
+        productRepository.save(product);
+        return product.getId();
+    }
+
+    @DgsMutation
+    public boolean deleteProduct(@InputArgument(name = "productId") String productId) throws Exception {
+        if(productId.isBlankOrNull()){
+            throw new Exception("Không tìm thấy sản phẩm");
+        }
+        Product product = productRepository.findById(productId).get();
+        productRepository.delete(product);
+        return true;
     }
 
 }

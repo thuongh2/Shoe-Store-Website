@@ -212,7 +212,7 @@ type Mutation {
     updateProduct(product: ProductInput): String
     deleteProduct(productId: String): Boolean
 
-    createComment(commnet: CommentInput): String
+    createComment(comment: CommentInput): String
     updateComment(comment: CommentInput): String
     deleteComment(commentId: String): Boolean
 

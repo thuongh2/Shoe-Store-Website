@@ -23,4 +23,6 @@ public abstract class BaseService {
     @Autowired
     protected UserRepository userRepository;
 
+    @Autowired
+    protected CategoryRepository categoryRepository;
 }
