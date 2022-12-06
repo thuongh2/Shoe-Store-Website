@@ -5,38 +5,46 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
-@Entity
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Size implements Serializable {
+@Entity
+@Table(name = "Order_Details")
+public class OrderItem implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    @Column(name = "size", nullable = false, columnDefinition = "integer default 0")
+    private String orderId;
+
+    private String productId;
+
+    private String paymentId;
+
     private int size;
 
-    @Column(name = "quantity", nullable = false, columnDefinition = "integer default 0")
+    private String userId;
+
     private int quantity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    private Product product;
+    private BigDecimal price; // giá của sản phẩm
 
-    @Column(columnDefinition = "boolean default true")
+    private double amount; // tổng tiền = price * quantity
+
+    private boolean check;
+
     private boolean active = true;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Size size = (Size) o;
-        return id != null && Objects.equals(id, size.id);
+        OrderItem that = (OrderItem) o;
+        return id != null && Objects.equals(id, that.id);
     }
 
     @Override

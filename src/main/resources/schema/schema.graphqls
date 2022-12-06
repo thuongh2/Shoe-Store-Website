@@ -1,0 +1,235 @@
+type Product {
+    id: String!
+    name: String!
+    description: String!
+    price: String!
+    image: [String]
+    sizes: [String]
+    category: Category
+    discount: Int
+    active: Boolean
+    promotionalPrice: BigDecimal
+    sold: Int
+    isSelling: Boolean
+    rating: Int
+}
+
+input ProductInput {
+    id: String!
+    name: String!
+    description: String!
+    price: String!
+    image: [String]
+    sizes: [String]
+    category: [String]
+    discount: Int
+    active: Boolean
+    promotionalPrice: BigDecimal
+    sold: Int
+    isSelling: Boolean
+    rating: Int
+}
+
+type Category {
+    id: String!
+    name: String!
+    slug: String
+    image: String
+    isDelete: Boolean
+}
+
+input CategoryInput {
+    id: String!
+    name: String!
+    slug: String
+    image: String
+    isDelete: Boolean
+}
+
+type User {
+    id: String!
+    username: String!
+    password: String!
+    name: String
+    email: String
+    role: String
+    isActiveMail: Boolean
+    avatar: String
+    eWallet: String
+}
+
+input UserInput {
+    id: String!
+    username: String!
+    password: String!
+    name: String
+    email: String
+    role: String
+    isActiveMail: Boolean
+    avatar: String
+    eWallet: String
+}
+
+
+
+type Order {
+    id: String
+    userId: String!
+    address: String
+    phone: String
+    status: String
+    isPaidBefore: Boolean
+}
+
+input OrderInput {
+    id: String
+    userId: String!
+    address: String
+    phone: String
+    status: String
+    isPaidBefore: Boolean
+}
+
+
+type OrderItem {
+    id: String
+    orderId: String
+    productId: String
+    paymentId: String
+    size: Int
+    userId: String
+    quantity: Int
+    price: BigDecimal
+    amount: BigDecimal
+    check: Boolean
+    active: Boolean
+}
+
+input OrderItemInput  {
+    id: String
+    orderId: String
+    productId: String
+    paymentId: String
+    size: Int
+    userId: String
+    quantity: Int
+    price: BigDecimal
+    amount: BigDecimal
+    check: Boolean
+    active: Boolean
+}
+
+type Payment {
+    id: String!
+    productId: String
+    productName: String
+    paymentMethod: String
+    paymentGateway: String
+    orderId: String
+    price: BigDecimal
+    currency: String
+    quantity: Int
+    unit: String
+    amount: BigDecimal
+    transaction: String
+}
+
+input PaymentInput {
+    id: String!
+    productId: String
+    productName: String
+    paymentMethod: String
+    paymentGateway: String
+    orderId: String
+    price: BigDecimal
+    currency: String
+    quantity: Int
+    unit: String
+    amount: BigDecimal
+    transaction: String
+}
+
+
+
+type Comment {
+    id: String!
+    content: String
+    userId: String
+    productId: String
+    like: Int
+}
+
+input CommentInput {
+    id: String!
+    content: String
+    userId: String
+    productId: String
+    like: Int
+}
+
+type Query {
+    signIn(username: String!, password: String): String
+
+    searchProducts(name: String, category: String): [Product]
+    searchUser(username: String, email: String): [User]
+
+    getAllProduct: [Product]
+    getProductById(id: String!): Product
+    getProductByName(name: String!): Product
+    getProductLikeName(name: String): [Product]
+    getProductByCategory(category: String): [Product]
+
+    getAllUser:[User]
+    getUserById(id: String!): User
+    getUserByName(name: String!): User
+
+    getCommentOfProduct(productId: String!): [Comment]
+
+    getAllCategory: [Category]
+
+    getAllPayment: [Payment]
+    getPaymentById(paymentId: String): Payment
+    getPaymentByOrder(orderId: String): Payment
+    getPaymentByProduct(productId: String): Payment
+
+    getAllOrder: [Order]
+    getOrderById(orderId: String): Order
+    getOrderOfUser(userId: String): [Order]
+    getItemsOfOrder(orderId: String): [OrderItem]
+
+    getOrderItem(orderId: String): [OrderItem]
+
+}
+
+type Mutation {
+    signUp(user: UserInput!): String
+
+    createUser(user: UserInput): String
+    updateUser(user: UserInput): String
+    deleteUser(userId: String!): Boolean
+
+    createProduct(product: ProductInput): String
+    updateProduct(product: ProductInput): String
+    deleteProduct(productId: String): Boolean
+
+    createComment(commnet: CommentInput): String
+    updateComment(comment: CommentInput): String
+    deleteComment(commentId: String): Boolean
+
+    createOrder(order: OrderInput): String
+    updateOrder(order: OrderInput): String
+    deleteOrder(orderId: String): Boolean
+
+    createOrderItem(orderItem: OrderItemInput): String
+    updateOrderItem(orderItem: OrderItemInput): String
+    deleteOrderItem(orderItemId: String): Boolean
+
+    createPayment(payment: PaymentInput): String
+    updatePayment(payment: PaymentInput): String
+    deletePayment(paymentId: String): Boolean
+
+    createCategory(category: CategoryInput): String
+    updateCategory(category: CategoryInput): String
+    deleteCategory(categoryId: String!): Boolean
+
+}

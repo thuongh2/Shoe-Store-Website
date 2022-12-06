@@ -1,0 +1,4 @@
+scalar BigDecimal
+scalar Long
+scalar Object
+scalar DateCustom
