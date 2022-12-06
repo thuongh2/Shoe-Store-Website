@@ -1,4 +1,4 @@
-package vn.longvan.payment.paymentgateway.graphql.scalar;
+package com.example.businessapp.graphql.scalar;
 
 import com.netflix.graphql.dgs.DgsScalar;
 import graphql.language.StringValue;

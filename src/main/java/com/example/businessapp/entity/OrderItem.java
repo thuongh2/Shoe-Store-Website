@@ -1,20 +1,18 @@
 package com.example.businessapp.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@Entity
-@Table(name = "Order_Details")
+@AllArgsConstructor
+@Builder
+@Document(collection = "order_item")
 public class OrderItem implements Serializable {
     @Id
     private String id;
@@ -33,22 +31,10 @@ public class OrderItem implements Serializable {
 
     private BigDecimal price; // giá của sản phẩm
 
-    private double amount; // tổng tiền = price * quantity
+    private BigDecimal amount; // tổng tiền = price * quantity
 
     private boolean check;
 
-    private boolean active = true;
+    private boolean active;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        OrderItem that = (OrderItem) o;
-        return id != null && Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }
