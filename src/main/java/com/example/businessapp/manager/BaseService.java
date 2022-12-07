@@ -2,8 +2,12 @@ package com.example.businessapp.manager;
 
 import com.example.businessapp.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 public abstract class BaseService {
+
+    @Autowired
+    protected MongoTemplate mongoTemplate;
 
     @Autowired
     protected ProductRepository productRepository;
@@ -22,5 +26,9 @@ public abstract class BaseService {
 
     @Autowired
     protected UserRepository userRepository;
+
+    @Autowired
+    protected CategoryRepository categoryRepository;
+
 
 }

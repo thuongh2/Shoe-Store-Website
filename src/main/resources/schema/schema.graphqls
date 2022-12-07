@@ -15,7 +15,6 @@ type Product {
 }
 
 input ProductInput {
-    id: String!
     name: String!
     description: String!
     price: BigDecimal!
@@ -39,7 +38,6 @@ type Category {
 }
 
 input CategoryInput {
-    id: String!
     name: String!
     slug: String
     image: String
@@ -49,17 +47,13 @@ input CategoryInput {
 type User {
     id: String!
     username: String!
-    password: String!
     name: String
     email: String
-    role: String
     isActiveMail: Boolean
     avatar: String
-    eWallet: String
 }
 
 input UserInput {
-    id: String!
     username: String!
     password: String!
     name: String
@@ -82,7 +76,6 @@ type Order {
 }
 
 input OrderInput {
-    id: String
     userId: String!
     address: String
     phone: String
@@ -135,7 +128,7 @@ type Payment {
 }
 
 input PaymentInput {
-    id: String!
+    id: String
     productId: String
     productName: String
     paymentMethod: String
@@ -152,7 +145,7 @@ input PaymentInput {
 
 
 type Comment {
-    id: String!
+    id: String
     content: String
     userId: String
     productId: String
@@ -168,14 +161,15 @@ input CommentInput {
 }
 
 type Query {
-    signIn(username: String!, password: String): String
+    """ đăng nhập """
+    signIn(username: String!, password: String): User
 
     searchProducts(name: String, category: String): [Product]
     searchUser(username: String, email: String): [User]
 
     getAllProduct: [Product]
     getProductById(id: String!): Product
-    getProductByName(name: String!): Product
+    getProductByName(name: String!): [Product]
     getProductLikeName(name: String): [Product]
     getProductByCategory(category: String): [Product]
 
@@ -190,7 +184,7 @@ type Query {
     getAllPayment: [Payment]
     getPaymentById(paymentId: String): Payment
     getPaymentByOrder(orderId: String): Payment
-    getPaymentByProduct(productId: String): Payment
+    getPaymentByProduct(productId: String): [Payment]
 
     getAllOrder: [Order]
     getOrderById(orderId: String): Order
@@ -202,7 +196,6 @@ type Query {
 }
 
 type Mutation {
-    signUp(user: UserInput!): String
 
     createUser(user: UserInput): String
     updateUser(user: UserInput): String
@@ -212,7 +205,7 @@ type Mutation {
     updateProduct(product: ProductInput): String
     deleteProduct(productId: String): Boolean
 
-    createComment(commnet: CommentInput): String
+    createComment(comment: CommentInput): String
     updateComment(comment: CommentInput): String
     deleteComment(commentId: String): Boolean
 
