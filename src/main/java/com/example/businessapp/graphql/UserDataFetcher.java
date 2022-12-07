@@ -3,18 +3,22 @@ package com.example.businessapp.graphql;
 import com.example.businessapp.entity.Product;
 import com.example.businessapp.entity.User;
 import com.example.businessapp.manager.BaseService;
+import com.example.businessapp.manager.UserManager;
 import com.example.businessapp.utils.Extensions;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import lombok.experimental.ExtensionMethod;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @DgsComponent
 @ExtensionMethod(Extensions.class)
 public class UserDataFetcher extends BaseService {
+    @Autowired
+    protected UserManager userManager;
 
     @DgsQuery
     public List<User> getAllUser(){
@@ -22,9 +26,15 @@ public class UserDataFetcher extends BaseService {
     }
 
     @DgsQuery
+    public User signIn(String username, String password){
+        return userManager.signIn(username, password);
+    }
+
+    @DgsQuery
     public User getUserById(@InputArgument(name = "id") String id){
         return userRepository.findById(id).get();
     }
+
 
     @DgsQuery
     public List<User> getUserByName(@InputArgument(name = "name") String name){
